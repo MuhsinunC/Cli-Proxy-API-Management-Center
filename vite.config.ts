@@ -63,38 +63,10 @@ export default defineConfig({
     }
   },
   server: {
-    port: 5173,
-    proxy: {
-      '/v0': {
-        target: 'http://localhost:8317',
-        changeOrigin: true
-      },
-      '/v1': {
-        target: 'http://localhost:8317',
-        changeOrigin: true
-      },
-      '/v1beta': {
-        target: 'http://localhost:8317',
-        changeOrigin: true
-      }
-    }
+    port: 5173
   },
   preview: {
-    port: 5173,
-    proxy: {
-      '/v0': {
-        target: 'http://localhost:8317',
-        changeOrigin: true
-      },
-      '/v1': {
-        target: 'http://localhost:8317',
-        changeOrigin: true
-      },
-      '/v1beta': {
-        target: 'http://localhost:8317',
-        changeOrigin: true
-      }
-    }
+    port: 5173
   },
   build: {
     target: 'es2015',
