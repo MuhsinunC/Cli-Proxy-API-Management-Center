@@ -9,4 +9,5 @@ export { useAuthStore } from './useAuthStore';
 export { useConfigStore } from './useConfigStore';
 export { useModelsStore } from './useModelsStore';
 export { useQuotaStore } from './useQuotaStore';
+export { useKeepAliveStore } from './useKeepAliveStore';
 export { useOpenAIEditDraftStore } from './useOpenAIEditDraftStore';

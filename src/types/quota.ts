@@ -97,6 +97,16 @@ export interface CodexUsagePayload {
   codeReviewRateLimit?: CodexRateLimitInfo | null;
 }
 
+// Claude/Anthropic API payload types
+export interface ClaudeQuotaUtilizationWindow {
+  utilization?: number | string;
+}
+
+export interface ClaudeQuotaPayload {
+  five_hour?: ClaudeQuotaUtilizationWindow;
+  seven_day?: ClaudeQuotaUtilizationWindow;
+}
+
 // Quota state types
 export interface AntigravityQuotaGroup {
   id: string;
@@ -142,6 +152,20 @@ export interface CodexQuotaState {
   status: 'idle' | 'loading' | 'success' | 'error';
   windows: CodexQuotaWindow[];
   planType?: string | null;
+  error?: string;
+  errorStatus?: number;
+}
+
+export interface ClaudeQuotaWindow {
+  id: string;
+  label: string;
+  labelKey?: string;
+  usedPercent: number | null;
+}
+
+export interface ClaudeQuotaState {
+  status: 'idle' | 'loading' | 'success' | 'error';
+  windows: ClaudeQuotaWindow[];
   error?: string;
   errorStatus?: number;
 }

@@ -10,9 +10,11 @@ import { authFilesApi, configFileApi } from '@/services/api';
 import {
   QuotaSection,
   ANTIGRAVITY_CONFIG,
+  CLAUDE_CONFIG,
   CODEX_CONFIG,
   GEMINI_CLI_CONFIG
 } from '@/components/quota';
+import { ClaudeKeepAlive } from '@/components/quota/ClaudeKeepAlive';
 import type { AuthFileItem } from '@/types';
 import styles from './QuotaPage.module.scss';
 
@@ -81,6 +83,13 @@ export function QuotaPage() {
         loading={loading}
         disabled={disableControls}
       />
+      <QuotaSection
+        config={CLAUDE_CONFIG}
+        files={files}
+        loading={loading}
+        disabled={disableControls}
+      />
+      <ClaudeKeepAlive files={files} disabled={disableControls} />
       <QuotaSection
         config={GEMINI_CLI_CONFIG}
         files={files}

@@ -465,6 +465,30 @@
     "fetch_all": "获取全部",
     "remaining_amount": "剩余 {{count}}"
   },
+  "claude_quota": {
+    "title": "Claude 额度",
+    "empty_title": "暂无 Claude 认证",
+    "empty_desc": "上传 Claude 认证文件后即可查看额度使用情况。",
+    "idle": "尚未加载额度，请点击刷新按钮。",
+    "loading": "正在加载额度...",
+    "load_failed": "额度获取失败：{{message}}",
+    "missing_auth_index": "认证文件缺少 auth_index",
+    "empty_windows": "暂无额度数据",
+    "refresh_button": "刷新额度",
+    "fetch_all": "获取全部",
+    "five_hour_window": "5小时会话",
+    "seven_day_window": "7天周额度"
+  },
+  "claude_keepalive": {
+    "title": "Claude 会话保活",
+    "description": "在5小时会话窗口重置后自动发送最小请求以开始新会话。每次保活消耗约2个Token。",
+    "auto_toggle": "自动",
+    "send_button": "发送保活",
+    "last_sent": "上次发送",
+    "next_scheduled": "下次",
+    "status_success": "会话已启动",
+    "status_error": "失败"
+  },
   "vertex_import": {
     "title": "Vertex JSON 登录",
     "description": "上传 Google 服务账号 JSON，使用 CLI vertex-import 同步规则写入 auth-dir/vertex-<project>.json。",

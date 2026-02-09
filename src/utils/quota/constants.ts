@@ -141,6 +141,15 @@ export const GEMINI_CLI_GROUP_LOOKUP = new Map(
 
 export const GEMINI_CLI_IGNORED_MODEL_PREFIXES = ['gemini-2.0-flash'];
 
+// Claude/Anthropic API configuration
+export const CLAUDE_QUOTA_URL = 'https://api.anthropic.com/api/oauth/usage';
+
+export const CLAUDE_REQUEST_HEADERS: Record<string, string> = {
+  Authorization: 'Bearer $TOKEN$',
+  'anthropic-beta': 'oauth-2025-04-20',
+  'User-Agent': 'claude-code/2.0.31',
+};
+
 // Codex API configuration
 export const CODEX_USAGE_URL = 'https://chatgpt.com/backend-api/wham/usage';
 

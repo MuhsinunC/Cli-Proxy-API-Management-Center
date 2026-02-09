@@ -1,0 +1,84 @@
+@use '../../styles/variables' as *;
+
+.description {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0 0 $spacing-md 0;
+  line-height: 1.5;
+}
+
+.accountList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.accountRow {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-md;
+  background-color: var(--bg-secondary);
+  border-radius: $radius-md;
+  border: 1px solid var(--border-color);
+}
+
+.accountHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.accountName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1;
+}
+
+.accountActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+
+  input[type='checkbox'] {
+    cursor: pointer;
+  }
+}
+
+.accountMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.statusSuccess {
+  color: var(--success-color, #22c55e);
+}
+
+.statusError {
+  color: var(--danger-color, #ef4444);
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

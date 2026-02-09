@@ -465,6 +465,30 @@
     "fetch_all": "Fetch All",
     "remaining_amount": "Remaining {{count}}"
   },
+  "claude_quota": {
+    "title": "Claude Quota",
+    "empty_title": "No Claude Auth Files",
+    "empty_desc": "Upload a Claude credential to view quota utilization.",
+    "idle": "Not loaded. Click Refresh Button.",
+    "loading": "Loading quota...",
+    "load_failed": "Failed to load quota: {{message}}",
+    "missing_auth_index": "Auth file missing auth_index",
+    "empty_windows": "No quota data available",
+    "refresh_button": "Refresh Quota",
+    "fetch_all": "Fetch All",
+    "five_hour_window": "5-hour session",
+    "seven_day_window": "7-day weekly"
+  },
+  "claude_keepalive": {
+    "title": "Claude Session Keep-Alive",
+    "description": "Automatically send a minimal message to start new sessions when the 5-hour window resets. Uses ~2 tokens per keep-alive.",
+    "auto_toggle": "Auto",
+    "send_button": "Send Keep-Alive",
+    "last_sent": "Last sent",
+    "next_scheduled": "Next",
+    "status_success": "Session started",
+    "status_error": "Failed"
+  },
   "vertex_import": {
     "title": "Vertex JSON Login",
     "description": "Upload a Google service account JSON to store it as auth-dir/vertex-<project>.json using the same rules as the CLI vertex-import helper.",
@@ -799,7 +823,7 @@
   },
   "quota_management": {
     "title": "Quota Management",
-    "description": "Monitor OAuth quota status for Antigravity, Codex, and Gemini CLI credentials.",
+    "description": "Monitor OAuth quota status for Antigravity, Codex, Gemini CLI, and Claude credentials.",
     "refresh_files": "Refresh auth files",
     "refresh_files_and_quota": "Refresh files & quota"
   },
