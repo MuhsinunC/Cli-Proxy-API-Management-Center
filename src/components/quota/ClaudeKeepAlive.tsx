@@ -11,7 +11,8 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { useKeepAliveStore } from '@/stores';
 import { apiCallApi, getApiCallErrorMessage } from '@/services/api';
-import { normalizeAuthIndexValue } from '@/utils/quota';
+import { normalizeAuthIndexValue, isClaudeFile, isDisabledAuthFile } from '@/utils/quota';
+import { CLAUDE_CODE_USER_AGENT } from '@/utils/quota/constants';
 import type { AuthFileItem } from '@/types';
 import styles from './ClaudeKeepAlive.module.scss';
 
@@ -21,7 +22,7 @@ const KEEP_ALIVE_HEADERS: Record<string, string> = {
   Authorization: 'Bearer $TOKEN$',
   'Content-Type': 'application/json',
   'anthropic-version': '2023-06-01',
-  'User-Agent': 'claude-code/2.0.31',
+  'User-Agent': CLAUDE_CODE_USER_AGENT,
 };
 
 const KEEP_ALIVE_BODY = JSON.stringify({
@@ -64,10 +65,7 @@ export function ClaudeKeepAlive({ files, disabled }: ClaudeKeepAliveProps) {
   const removeStaleAccounts = useKeepAliveStore((s) => s.removeStaleAccounts);
 
   const claudeFiles = useMemo(
-    () => files.filter((f) => {
-      const provider = (f.provider ?? f.type ?? '').toString().trim().toLowerCase();
-      return provider === 'claude';
-    }),
+    () => files.filter((f) => isClaudeFile(f) && !isDisabledAuthFile(f)),
     [files]
   );
 
@@ -110,6 +108,11 @@ export function ClaudeKeepAlive({ files, disabled }: ClaudeKeepAliveProps) {
     [setAccountStatus, setAccountLastKeepAlive, setAccountNextScheduled]
   );
 
+  // Keep a ref to accounts so the interval reads fresh state without
+  // being in the dependency array (avoids teardown on every store mutation).
+  const accountsRef = useRef(accounts);
+  accountsRef.current = accounts;
+
   // Auto keep-alive timer
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -119,13 +122,13 @@ export function ClaudeKeepAlive({ files, disabled }: ClaudeKeepAliveProps) {
       intervalRef.current = null;
     }
 
-    const enabledFiles = claudeFiles.filter((f) => accounts[f.name]?.enabled);
-    if (enabledFiles.length === 0 || disabled) return;
+    if (claudeFiles.length === 0 || disabled) return;
 
     const checkAndSend = () => {
+      const currentAccounts = accountsRef.current;
       const now = Date.now();
-      for (const file of enabledFiles) {
-        const account = accounts[file.name];
+      for (const file of claudeFiles) {
+        const account = currentAccounts[file.name];
         if (!account?.enabled) continue;
         if (account.status === 'sending') continue;
 
@@ -147,7 +150,7 @@ export function ClaudeKeepAlive({ files, disabled }: ClaudeKeepAliveProps) {
         intervalRef.current = null;
       }
     };
-  }, [claudeFiles, accounts, disabled, sendKeepAlive]);
+  }, [claudeFiles, disabled, sendKeepAlive]);
 
   if (claudeFiles.length === 0) return null;
 

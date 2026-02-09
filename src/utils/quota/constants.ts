@@ -142,12 +142,14 @@ export const GEMINI_CLI_GROUP_LOOKUP = new Map(
 export const GEMINI_CLI_IGNORED_MODEL_PREFIXES = ['gemini-2.0-flash'];
 
 // Claude/Anthropic API configuration
+export const CLAUDE_CODE_USER_AGENT = 'claude-code/2.0.31';
+
 export const CLAUDE_QUOTA_URL = 'https://api.anthropic.com/api/oauth/usage';
 
 export const CLAUDE_REQUEST_HEADERS: Record<string, string> = {
   Authorization: 'Bearer $TOKEN$',
   'anthropic-beta': 'oauth-2025-04-20',
-  'User-Agent': 'claude-code/2.0.31',
+  'User-Agent': CLAUDE_CODE_USER_AGENT,
 };
 
 // Codex API configuration

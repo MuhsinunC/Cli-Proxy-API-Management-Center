@@ -23,7 +23,7 @@ interface KeepAliveStoreState {
   ) => void;
   setAccountLastKeepAlive: (name: string, timestamp: number) => void;
   setAccountNextScheduled: (name: string, timestamp: number | null) => void;
-  getOrCreateAccount: (name: string) => KeepAliveAccountState;
+  getAccountState: (name: string) => KeepAliveAccountState;
   removeStaleAccounts: (validNames: string[]) => void;
 }
 
@@ -85,7 +85,7 @@ export const useKeepAliveStore = create<KeepAliveStoreState>()(
           },
         })),
 
-      getOrCreateAccount: (name) => {
+      getAccountState: (name) => {
         const state = get();
         return state.accounts[name] ?? DEFAULT_ACCOUNT_STATE;
       },
